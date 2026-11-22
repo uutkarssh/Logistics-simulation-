@@ -10,6 +10,7 @@ import { siteStats, siteActivityLine, dockName } from '../data/selectors.js'
 import { fmtTime, fmtNum, fmtKmh, fmtMin, statusMeta, TYPE_LABEL } from '../data/format.js'
 import { illustration, skuIllustration } from './illustrations.js'
 import { icon } from './icons.js'
+import { tipButton } from './tip.js'
 
 const FADE_MS = 240
 // illustrations are drawn with some air around them; render them a bit larger than their slot
@@ -111,8 +112,8 @@ function status(chip, tone, text, extraCls = '') {
   </div>`
 }
 
-function progress(value, tone, label) {
-  return `<div class="dp-progress">${bar(value, tone)}<span class="dp-progress__label">${esc(label)}</span></div>`
+function progress(value, tone, label, tipKey = '') {
+  return `<div class="dp-progress">${bar(value, tone)}<span class="dp-progress__label">${esc(label)}${tipKey ? tipButton(tipKey) : ''}</span></div>`
 }
 
 /** rows: [label, valueHtml][] — values are trusted HTML (escape plain text with esc()). */
@@ -121,21 +122,21 @@ function rows(list) {
     `<div class="dp-row"><span class="dp-row__k">${esc(k)}</span><span class="dp-row__v">${v}</span></div>`).join('')}</div>`
 }
 
-function tile(label, valueHtml, barHtml = '') {
-  return `<div class="dp-tile"><div class="dp-tile__k">${esc(label)}</div><div class="dp-tile__v">${valueHtml}</div>${barHtml}</div>`
+function tile(label, valueHtml, barHtml = '', tipKey = '') {
+  return `<div class="dp-tile"><div class="dp-tile__k">${esc(label)}${tipKey ? tipButton(tipKey) : ''}</div><div class="dp-tile__v">${valueHtml}</div>${barHtml}</div>`
 }
 
 function siteTiles(s) {
   return `<div class="dp-tiles">
-    ${tile('Stock on hand', `<b>${fmtNum(s.stock)}</b> / ${fmtNum(s.capacity)}`, bar(pct(s.stock, s.capacity), 'blue'))}
-    ${tile('Truck bays', `<b>${s.docksBusy}</b> / ${s.docksTotal} busy`, bar(pct(s.docksBusy, s.docksTotal), 'green'))}
-    ${tile('Outbound today', `<b>${fmtNum(s.outboundToday)}</b> trucks`)}
-    ${tile('Put-aways today', `<b>${fmtNum(s.putawaysToday)}</b> pallets`)}
+    ${tile('Stock on hand', `<b>${fmtNum(s.stock)}</b> / ${fmtNum(s.capacity)}`, bar(pct(s.stock, s.capacity), 'blue'), 'stock')}
+    ${tile('Truck bays', `<b>${s.docksBusy}</b> / ${s.docksTotal} busy`, bar(pct(s.docksBusy, s.docksTotal), 'green'), 'truck_bays')}
+    ${tile('Outbound today', `<b>${fmtNum(s.outboundToday)}</b> trucks`, '', 'outbound')}
+    ${tile('Put-aways today', `<b>${fmtNum(s.putawaysToday)}</b> pallets`, '', 'putaways')}
   </div>`
 }
 
-const section = (title, right) =>
-  `<div class="dp-sec"><span class="dp-sec__t">${esc(title)}</span><span class="dp-sec__r">${esc(right)}</span></div>`
+const section = (title, right, tipKey = '') =>
+  `<div class="dp-sec"><span class="dp-sec__t">${esc(title)}${tipKey ? tipButton(tipKey) : ''}</span><span class="dp-sec__r">${esc(right)}</span></div>`
 
 const siteName = (id) => db.site(id)?.name ?? id ?? '—'
 // every site card in the video uses the same blue depot thumbnail (even WH-03's cyan badge)
@@ -175,9 +176,9 @@ function siteCard(site) {
   })
     + status(site.status, statusMeta('site', site.status).tone, siteActivityLine(site.id))
     + siteTiles(s)
-    + section('Inventory', 'units')
+    + section('Inventory', 'units', 'low_stock')
     + `<div class="dp-inv">${inv}</div>`
-    + section('Forklift fleet', `${s.forkliftsWorking}/${s.forkliftsTotal} working`)
+    + section('Forklift fleet', `${s.forkliftsWorking}/${s.forkliftsTotal} working`, 'forklifts')
     + flRow
 }
 
@@ -359,7 +360,7 @@ function truckCard(t) {
   const following = store.state.followId === t.id
 
   let prog
-  if (atDock) prog = progress(pct(t.progress.done, t.progress.total), 'green', `${t.progress.done}/${t.progress.total}`)
+  if (atDock) prog = progress(pct(t.progress.done, t.progress.total), 'green', `${t.progress.done}/${t.progress.total}`, 'dock_busy')
   else if (t.status === 'departing') prog = progress(100, 'green', 'Departed')
   else prog = progress(approachPct(t), 'blue', fmtDistance(t.distanceLeftM ?? 0))
 

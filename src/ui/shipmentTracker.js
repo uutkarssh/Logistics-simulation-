@@ -7,6 +7,7 @@ import { store, bus } from '../state/store.js'
 import { shipmentTracking } from '../data/selectors.js'
 import { illustration } from './illustrations.js'
 import { morph, esc, ico } from './detailPanel.js'
+import { tipButton } from './tip.js'
 
 const STEP_ICON = { clipboard: 'clipboard', box: 'box', package: 'package', truck: 'truck', check: 'check' }
 
@@ -23,7 +24,7 @@ function stepHtml(step) {
 function trackerHtml(model) {
   if (!model) {
     return `<div class="st__main">
-      <div class="st__head"><span class="st__icon">${ico('truck', 20)}</span><span class="st__title">Shipment Tracking</span></div>
+      <div class="st__head"><span class="st__icon">${ico('truck', 20)}</span><span class="st__title">Shipment Tracking</span>${tipButton('shipment')}</div>
       <div class="st__empty">Select a truck to follow its shipment.</div>
     </div>`
   }
@@ -31,7 +32,7 @@ function trackerHtml(model) {
   return `<div class="st__main">
       <div class="st__head">
         <span class="st__icon">${ico('truck', 20)}</span>
-        <span class="st__title">Shipment Tracking</span>
+        <span class="st__title">Shipment Tracking</span>${tipButton('shipment')}
         <span class="st__meta">${esc(model.header)}</span>
       </div>
       <ol class="st-steps">${model.steps.map(stepHtml).join('')}</ol>

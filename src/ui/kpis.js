@@ -4,6 +4,7 @@ import { store, bus } from '../state/store.js'
 import { kpis } from '../data/selectors.js'
 import { fmtNum, fmtPct } from '../data/format.js'
 import { icon } from './icons.js'
+import { tipButton } from './tip.js'
 
 // selectors.kpis() icon key → glyph drawn in the tile (the video uses solid, shaded glyphs)
 const GLYPH = {
@@ -11,6 +12,8 @@ const GLYPH = {
   truck: ['truck', 28],
   clock: ['clockSolid', 26],
 }
+
+const TIP_KEY = { stock: 'stock', trucks: 'truck_bays', ontime: 'on_time' }
 
 const formatValue = (k) => (k.format === 'pct' ? fmtPct(k.value) : fmtNum(k.value))
 
@@ -20,7 +23,7 @@ function cardTemplate(k) {
   <div class="card kpi" data-kpi="${k.key}">
     <span class="kpi__tile"><span class="kpi__glyph kpi__glyph--${k.icon}">${icon(glyph, size)}</span></span>
     <div class="kpi__body">
-      <div class="kpi__title"></div>
+      <div class="kpi__title"><span class="kpi__title-text"></span>${tipButton(TIP_KEY[k.key])}</div>
       <div class="kpi__row">
         <span class="kpi__value"></span>
         <span class="kpi__delta"><span class="kpi__arrow">${icon('arrowUp', 10, { sw: 1.7 })}</span><span class="kpi__delta-text"></span></span>
@@ -38,7 +41,7 @@ export function mountKpis(el) {
   el.setAttribute('aria-label', 'Key metrics')
   el.innerHTML = kpis(store.state.siteId).map(cardTemplate).join('')
   const cards = new Map([...el.querySelectorAll('[data-kpi]')].map((card) => [card.dataset.kpi, {
-    title: card.querySelector('.kpi__title'),
+    title: card.querySelector('.kpi__title-text'),
     value: card.querySelector('.kpi__value'),
     delta: card.querySelector('.kpi__delta'),
     deltaText: card.querySelector('.kpi__delta-text'),

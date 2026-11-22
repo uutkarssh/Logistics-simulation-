@@ -160,7 +160,7 @@ function template() {
       <div class="wt-pop tb-usermenu" role="menu">
         <div class="tb-usermenu__head">
           ${avatar(32)}
-          <div><b>${esc(db.user.name)}</b><span>${esc(db.user.email)}</span></div>
+          <div><b>${esc(db.user.name)}</b><span class="tb-usermenu__role">${esc(db.user.role)}</span><span class="tb-usermenu__email">${esc(db.user.email)}</span></div>
         </div>
         <button class="tb-usermenu__item" type="button" role="menuitem">${icon('user', 16)}Profile</button>
         <button class="tb-usermenu__item" type="button" role="menuitem">${icon('settings', 16)}Settings</button>

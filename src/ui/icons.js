@@ -71,6 +71,7 @@ const ICONS = {
   more: ['s', '<circle cx="6" cy="12" r="1.1" fill="currentColor"/><circle cx="12" cy="12" r="1.1" fill="currentColor"/><circle cx="18" cy="12" r="1.1" fill="currentColor"/>'],
   help: ['s', '<circle cx="12" cy="12" r="8.6"/><path d="M9.3 9.1a2.7 2.7 0 0 1 5.3.7c0 1.6-2.6 2.2-2.6 3.5"/><circle cx="12" cy="16.4" r=".75" fill="currentColor"/>'],
   globe: ['s', '<circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.6 2.4 2.6 14.8 0 17.2M12 3.4c-2.6 2.4-2.6 14.8 0 17.2"/>'],
+  tip: ['s', '<path d="M9.5 17.8h5M10.3 20.8h3.4"/><path d="M12 3.1a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2.1h5c.1-.9.5-1.6 1.1-2.1A6 6 0 0 0 12 3.1Z"/><path d="M11 8.2c.3-.8 1.7-.8 2 0 .2.6-.3 1-.7 1.4-.3.3-.3.5-.3.9" stroke-width="1.4"/>'],
 
   // ── filled glyphs ──
   logoCube: ['f', CUBE_SOLID],

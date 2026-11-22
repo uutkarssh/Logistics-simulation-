@@ -979,3 +979,48 @@ svg { flex: none; }
   body.is-mobile #wt-sheet { right: 66px; }
   body.is-mobile #wt-sheet-tabs { right: auto; }
 }
+
+/* ───────────────────────────── mobile top bar parity fix ─────────────────────────────
+   Make the site selector absorb remaining width (name truncates with ellipsis) so the logo,
+   site badge, live clock, search, help, bell AND avatar all fit on a 360px screen — no option
+   missing vs desktop. Overrides the earlier mobile block by source order (same specificity). */
+@media (max-width: 820px) {
+  body.is-mobile #wt-topbar { gap: 4px; padding: 0 6px 0 8px; }
+  body.is-mobile .tb-brand { flex: none; }
+  body.is-mobile .tb-site { flex: 1 1 auto; min-width: 0; }
+  body.is-mobile .tb-site__box { width: 100%; min-width: 0; }
+  body.is-mobile .tb-site__main { min-width: 0; }
+  body.is-mobile .tb-site__name { max-width: none; font-size: 12px; }
+  body.is-mobile .tb-live { flex: none; }
+  body.is-mobile .tb-live__clock { font-size: 11px; }
+  body.is-mobile .tb-mobile-btn,
+  body.is-mobile .tb-help,
+  body.is-mobile .tb-bell__btn { width: 32px; height: 32px; flex: none; }
+  body.is-mobile .tb-bell__dot { top: 5px; right: 5px; }
+  body.is-mobile .tb-user { flex: none; }
+  body.is-mobile .tb-user__avatar { width: 30px; height: 30px; }
+  /* profile dropdown: show name + role + email (mobile-appropriate account info) */
+  body.is-mobile .tb-usermenu__head { flex-wrap: wrap; }
+  body.is-mobile .tb-usermenu__role { font-size: 11px; color: var(--text-2); font-weight: 500; }
+  body.is-mobile .tb-usermenu__email { display: block; font-size: 10px; color: var(--text-3); font-weight: 400; }
+}
+
+/* profile dropdown head: name + role + email stacked (desktop + mobile) */
+.tb-usermenu__head > div { display: flex; flex-direction: column; min-width: 0; }
+.tb-usermenu__role { font-size: 11px; color: var(--text-2); font-weight: 500; line-height: 14px; }
+.tb-usermenu__email { font-size: 10px; color: var(--text-3); font-weight: 400; line-height: 13px; }
+
+/* mobile topbar: site selector basis 0 so it only takes leftover space (name truncates) and
+   bell + avatar always fit. Later source order overrides the earlier flex:1 1 auto. */
+@media (max-width: 820px) {
+  body.is-mobile .tb-site { flex: 1 1 0; min-width: 0; }
+}
+
+/* mobile topbar final: hide the site NAME (badge WH-0x + chevron is enough; full name is in the
+   dropdown), make the selector compact, and push clock + search/help/bell/avatar to the right
+   edge so everything fits on 360px with zero overflow. */
+@media (max-width: 820px) {
+  body.is-mobile .tb-site__text { display: none; }
+  body.is-mobile .tb-site { flex: none; }
+  body.is-mobile .tb-live { margin-left: auto; }
+}
