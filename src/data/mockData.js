@@ -18,10 +18,10 @@ export const USER = {
 
 // ───────────────────────────── Carriers ─────────────────────────────
 export const CARRIERS = {
-  waretrack: { key: 'waretrack', name: 'WareTrack', fullName: 'WareTrack Freight', color: '#2f5bea' },
-  bluepeak:  { key: 'bluepeak',  name: 'Bluepeak',  fullName: 'Bluepeak Foods',   color: '#1f2a78' },
-  nordline:  { key: 'nordline',  name: 'Nordline',  fullName: 'Nordline Logistics', color: '#16a08b' },
-  cargoviva: { key: 'cargoviva', name: 'Cargoviva', fullName: 'Cargoviva',        color: '#f26b1d' },
+  waretrack: { key: 'waretrack', name: 'VRL Logistics', fullName: 'VRL Logistics Ltd', color: '#2f5bea' },
+  bluepeak:  { key: 'bluepeak',  name: 'TCI Express',   fullName: 'Transport Corporation of India', color: '#1f2a78' },
+  nordline:  { key: 'nordline',  name: 'Blue Dart',     fullName: 'Blue Dart Express', color: '#16a08b' },
+  cargoviva: { key: 'cargoviva', name: 'Allcargo',      fullName: 'Allcargo Logistics', color: '#f26b1d' },
 }
 
 // ───────────────────────────── SKUs (item master) ─────────────────────────────
@@ -37,6 +37,16 @@ export const SKUS = {
   'FMCG-HUL-12': { sku: 'FMCG-HUL-12', name: 'FMCG Carton (HUL Toiletries)',      category: 'FMCG & Retail',      kind: 'cardboard', icon: 'box',      unitKg: 8 },
   'LPG-HP-14':   { sku: 'LPG-HP-14',   name: 'LPG Cylinder (HPCL 14.2 kg)',       category: 'Industrial Gas',     kind: 'blue',      icon: 'cylinder', unitKg: 14.2 },
   'TILE-KAJ-30': { sku: 'TILE-KAJ-30', name: 'Kajaria Ceramic Tiles Carton',      category: 'Building Materials', kind: 'white',     icon: 'panel',    unitKg: 30 },
+  // regional specialties (new) — each tied to a real Indian industry hub
+  'SAR-BNR':     { sku: 'SAR-BNR',     name: 'Banarasi Silk Saree Carton',        category: 'Textiles',           kind: 'cardboard', icon: 'box',  unitKg: 15 },   // Varanasi, UP
+  'CARP-BHD':    { sku: 'CARP-BHD',    name: 'Handloom Wool Carpet',              category: 'Home Furnishings',   kind: 'cardboard', icon: 'box',  unitKg: 28 },   // Bhadohi, UP
+  'TXT-SUR':     { sku: 'TXT-SUR',     name: 'Polyester Fabric Roll',             category: 'Textiles',           kind: 'cardboard', icon: 'box',  unitKg: 30 },   // Surat, Gujarat
+  'DIA-SUR':     { sku: 'DIA-SUR',     name: 'Polished Diamond Parcels',          category: 'Gems & Jewellery',   kind: 'white',     icon: 'box',  unitKg: 1.5 },  // Surat, Gujarat
+  'TEA-ASM':     { sku: 'TEA-ASM',     name: 'Assam CTC Tea Chest',               category: 'Beverages',          kind: 'cardboard', icon: 'sack', unitKg: 22 },   // Assam
+  'SPICE-KER':   { sku: 'SPICE-KER',   name: 'Whole Spices Sack (Cardamom/Pepper)', category: 'Condiments',       kind: 'cardboard', icon: 'sack', unitKg: 25 },   // Kerala
+  'CRACKR-SVK':  { sku: 'CRACKR-SVK',  name: 'Firecracker Carton',                category: 'Pyrotechnics',       kind: 'cardboard', icon: 'box',  unitKg: 12 },   // Sivakasi, Tamil Nadu
+  'COTTON-MH':   { sku: 'COTTON-MH',   name: 'Cotton Bales',                      category: 'Textiles',           kind: 'cardboard', icon: 'sack', unitKg: 170 },  // Maharashtra
+  'AUTO-PUN':    { sku: 'AUTO-PUN',    name: 'Auto Components Crate',             category: 'Automotive',         kind: 'cardboard', icon: 'box',  unitKg: 45 },   // Pune, Maharashtra
 }
 
 // ───────────────────────────── Sites ─────────────────────────────
@@ -44,76 +54,76 @@ export const SKUS = {
 // badgeTone: colour of the "WH-0x" badge in the top bar.
 export const SITES = [
   {
-    id: 'WH-01', type: 'site', name: 'Riverside Hub', kind: 'DEPOT', variant: 'depot',
-    address: '12 Riverside Dr, Newark NJ', status: 'Operational', badgeTone: 'blue',
+    id: 'WH-01', type: 'site', name: 'Varanasi Depot', kind: 'DEPOT', variant: 'depot',
+    address: 'Pandeypur, Varanasi, UP', status: 'Operational', badgeTone: 'blue',
     capacity: 1800, stock: 1412, stockDelta: 15,
     onTime: 96.6, onTimeDelta: 0.4, outboundToday: 23, putawaysToday: 15,
     trucksDelta: 1,
     inventory: [
-      { sku: 'CEM-UT-50', qty: 1900, status: 'in_stock' },
-      { sku: 'RICE-SM-25', qty: 640, status: 'in_stock' },
+      { sku: 'SAR-BNR', qty: 320, status: 'in_stock' },
+      { sku: 'CARP-BHD', qty: 180, status: 'in_stock' },
       { sku: 'ATTA-AASH-30', qty: 210, status: 'low_stock' },
-      { sku: 'OIL-SF-15', qty: 300, status: 'in_stock' },
+      { sku: 'CEM-UT-50', qty: 480, status: 'in_stock' },
     ],
     featuredTruckId: 'TRK-2051',
     world: { x: 0, z: 0 },
   },
   {
-    id: 'WH-02', type: 'site', name: 'Northgate DC', kind: 'DISTRIBUTION CENTER', variant: 'dc',
-    address: '480 Northgate Blvd, Newark NJ', status: 'Operational', badgeTone: 'blue',
+    id: 'WH-02', type: 'site', name: 'Surat Distribution Hub', kind: 'DISTRIBUTION CENTER', variant: 'dc',
+    address: 'GIDC, Surat, Gujarat', status: 'Operational', badgeTone: 'blue',
     capacity: 4200, stock: 3310, stockDelta: 35,
     onTime: 98.2, onTimeDelta: 0.4, outboundToday: 21, putawaysToday: 35,
     trucksDelta: 2,
     inventory: [
-      { sku: 'FMCG-HUL-12', qty: 1200, status: 'in_stock' },
-      { sku: 'TMT-FE500', qty: 175, status: 'in_stock' },
-      { sku: 'RICE-SM-25', qty: 290, status: 'low_stock' },
-      { sku: 'OIL-SF-15', qty: 520, status: 'in_stock' },
+      { sku: 'TXT-SUR', qty: 1240, status: 'in_stock' },
+      { sku: 'DIA-SUR', qty: 175, status: 'in_stock' },
+      { sku: 'TILE-KAJ-30', qty: 520, status: 'in_stock' },
+      { sku: 'OIL-SF-15', qty: 290, status: 'low_stock' },
     ],
     featuredTruckId: 'TRK-2104',
     world: { x: 300, z: -40 },
   },
   {
-    id: 'WH-03', type: 'site', name: 'Eastport Cold Chain', kind: 'COLD STORE', variant: 'cold',
-    address: '7 Harbor Way, Elizabeth NJ', status: 'Operational', badgeTone: 'cyan',
+    id: 'WH-03', type: 'site', name: 'Guwahati Cold Chain', kind: 'COLD STORE', variant: 'cold',
+    address: 'Amingaon, Guwahati, Assam', status: 'Operational', badgeTone: 'cyan',
     capacity: 1400, stock: 990, stockDelta: 20,
     onTime: 96.0, onTimeDelta: 0.4, outboundToday: 31, putawaysToday: 20,
     trucksDelta: 1,
     inventory: [
-      { sku: 'RICE-SM-25', qty: 334, status: 'in_stock' },
-      { sku: 'ATTA-AASH-30', qty: 360, status: 'in_stock' },
-      { sku: 'UREA-NP-45', qty: 120, status: 'low_stock' },
-      { sku: 'OIL-SF-15', qty: 208, status: 'in_stock' },
+      { sku: 'TEA-ASM', qty: 334, status: 'in_stock' },
+      { sku: 'RICE-SM-25', qty: 360, status: 'in_stock' },
+      { sku: 'SPICE-KER', qty: 120, status: 'low_stock' },
+      { sku: 'FMCG-HUL-12', qty: 208, status: 'in_stock' },
     ],
     featuredTruckId: 'TRK-2148',
     world: { x: 600, z: 20 },
   },
   {
-    id: 'WH-04', type: 'site', name: 'Southfield Cross-Dock', kind: 'CROSS-DOCK', variant: 'crossdock',
-    address: '2200 Southfield Ave, Linden NJ', status: 'Operational', badgeTone: 'blue',
+    id: 'WH-04', type: 'site', name: 'Sivakasi Cross-Dock', kind: 'CROSS-DOCK', variant: 'crossdock',
+    address: 'Sivakasi, Virudhunagar, Tamil Nadu', status: 'Operational', badgeTone: 'blue',
     capacity: 1600, stock: 610, stockDelta: 20,
     onTime: 96.2, onTimeDelta: 0.4, outboundToday: 29, putawaysToday: 20,
     trucksDelta: 2,
     inventory: [
-      { sku: 'CEM-UT-50', qty: 288, status: 'in_stock' },
-      { sku: 'TILE-KAJ-30', qty: 190, status: 'in_stock' },
-      { sku: 'TMT-FE500', qty: 73, status: 'low_stock' },
-      { sku: 'LPG-HP-14', qty: 320, status: 'in_stock' },
+      { sku: 'CRACKR-SVK', qty: 73, status: 'low_stock' },
+      { sku: 'FMCG-HUL-12', qty: 288, status: 'in_stock' },
+      { sku: 'TMT-FE500', qty: 190, status: 'in_stock' },
+      { sku: 'UREA-NP-45', qty: 320, status: 'in_stock' },
     ],
     featuredTruckId: 'TRK-2205',
     world: { x: 120, z: 300 },
   },
   {
-    id: 'WH-05', type: 'site', name: 'Westgate Robotics Hub', kind: 'AUTOMATED DC', variant: 'robotics',
-    address: '300 Westgate Rd, Kearny NJ', status: 'Operational', badgeTone: 'blue',
+    id: 'WH-05', type: 'site', name: 'Nagpur Robotics Hub', kind: 'AUTOMATED DC', variant: 'robotics',
+    address: 'MIHAN, Nagpur, Maharashtra', status: 'Operational', badgeTone: 'blue',
     capacity: 2400, stock: 1730, stockDelta: 25,
     onTime: 95.9, onTimeDelta: 0.4, outboundToday: 33, putawaysToday: 25,
     trucksDelta: 3,
     inventory: [
-      { sku: 'FMCG-HUL-12', qty: 934, status: 'in_stock' },
-      { sku: 'CEM-UT-50', qty: 1817, status: 'in_stock' },
-      { sku: 'UREA-NP-45', qty: 265, status: 'low_stock' },
-      { sku: 'TILE-KAJ-30', qty: 908, status: 'in_stock' },
+      { sku: 'COTTON-MH', qty: 934, status: 'in_stock' },
+      { sku: 'AUTO-PUN', qty: 175, status: 'in_stock' },
+      { sku: 'CEM-UT-50', qty: 265, status: 'low_stock' },
+      { sku: 'LPG-HP-14', qty: 908, status: 'in_stock' },
     ],
     featuredTruckId: 'TRK-2339',
     world: { x: 460, z: 320 },
@@ -168,63 +178,63 @@ const truck = (o) => ({
 
 export const TRUCKS = [
   // WH-01
-  truck({ id: 'TRK-2051', siteId: 'WH-01', carrier: 'waretrack', driver: 'Marcus Lee', plate: 'NJX-4471',
+  truck({ id: 'TRK-2051', siteId: 'WH-01', carrier: 'waretrack', driver: 'Ramesh Yadav', plate: 'UP 65 DB 2051',
     status: 'loading', dockId: 'WH-01-B1', shipmentId: 'SHP-78442',
     progress: { done: 2, total: 6 }, etaMin: 13, cargo: { pallets: 2, capacity: 6, weightT: 0.8 } }),
-  truck({ id: 'TRK-2287', siteId: 'WH-01', carrier: 'bluepeak', driver: 'Hannah Cole', plate: 'PAX-2093',
+  truck({ id: 'TRK-2287', siteId: 'WH-01', carrier: 'bluepeak', driver: 'Anjali Verma', plate: 'UP 65 EC 2287',
     status: 'en_route', dockId: 'WH-01-B2', shipmentId: 'SHP-78446',
     progress: { done: 0, total: 7 }, etaMin: 3, distanceLeftM: 640, speedKmh: 24, cargo: { pallets: 7, capacity: 8, weightT: 2.9 } }),
 
   // WH-02
-  truck({ id: 'TRK-2127', siteId: 'WH-02', carrier: 'bluepeak', driver: 'Owen Price', plate: 'BLU-7712',
+  truck({ id: 'TRK-2127', siteId: 'WH-02', carrier: 'bluepeak', driver: 'Suresh Patel', plate: 'GJ 01 CD 2127',
     status: 'loading', dockId: 'WH-02-B3', shipmentId: 'SHP-78441',
     progress: { done: 4, total: 7 }, etaMin: 9, cargo: { pallets: 4, capacity: 8, weightT: 1.7 } }),
-  truck({ id: 'TRK-2104', siteId: 'WH-02', carrier: 'nordline', driver: 'Ella Novak', plate: 'NRD-3380',
+  truck({ id: 'TRK-2104', siteId: 'WH-02', carrier: 'nordline', driver: 'Deepak Shah', plate: 'GJ 01 EF 2104',
     status: 'unloading', dockId: 'WH-02-B1', shipmentId: 'SHP-78444',
     progress: { done: 1, total: 5 }, etaMin: 13, cargo: { pallets: 4, capacity: 6, weightT: 1.9 } }),
-  truck({ id: 'TRK-2658', siteId: 'WH-02', carrier: 'cargoviva', driver: 'Diego Ramos', plate: 'CGV-5521',
+  truck({ id: 'TRK-2658', siteId: 'WH-02', carrier: 'cargoviva', driver: 'Imran Khan', plate: 'GJ 01 GH 2658',
     status: 'docking', dockId: 'WH-02-B2', shipmentId: 'SHP-78452',
     progress: { done: 0, total: 6 }, etaMin: 1, distanceLeftM: 31, speedKmh: 6, cargo: { pallets: 6, capacity: 8, weightT: 2.4 } }),
-  truck({ id: 'TRK-2526', siteId: 'WH-02', carrier: 'waretrack', driver: 'Grace Kim', plate: 'WTF-1186',
+  truck({ id: 'TRK-2526', siteId: 'WH-02', carrier: 'waretrack', driver: 'Priya Mehta', plate: 'GJ 01 IJ 2526',
     status: 'en_route', dockId: 'WH-02-B4', shipmentId: 'SHP-78453',
     progress: { done: 0, total: 5 }, etaMin: 2, distanceLeftM: 420, speedKmh: 22, cargo: { pallets: 5, capacity: 6, weightT: 2.0 } }),
 
   // WH-03
-  truck({ id: 'TRK-2148', siteId: 'WH-03', carrier: 'bluepeak', driver: 'Ravi Patel', plate: 'BLU-2148',
+  truck({ id: 'TRK-2148', siteId: 'WH-03', carrier: 'bluepeak', driver: 'Bhaben Das', plate: 'AS 01 KL 2148',
     status: 'unloading', dockId: 'WH-03-B2', shipmentId: 'SHP-78448', reefer: true,
     progress: { done: 3, total: 4 }, etaMin: 3, cargo: { pallets: 1, capacity: 4, weightT: 0.6 } }),
-  truck({ id: 'TRK-2471', siteId: 'WH-03', carrier: 'bluepeak', driver: 'Tom Becker', plate: 'BLU-2471',
+  truck({ id: 'TRK-2471', siteId: 'WH-03', carrier: 'bluepeak', driver: 'Rajesh Borah', plate: 'AS 01 MN 2471',
     status: 'unloading', dockId: 'WH-03-B1', shipmentId: 'SHP-78449', reefer: true,
     progress: { done: 0, total: 4 }, etaMin: 14, cargo: { pallets: 4, capacity: 4, weightT: 2.2 } }),
-  truck({ id: 'TRK-2603', siteId: 'WH-03', carrier: 'bluepeak', driver: 'Alex Walsh', plate: 'HUL-7099',
+  truck({ id: 'TRK-2603', siteId: 'WH-03', carrier: 'bluepeak', driver: 'Lakshmi Nair', plate: 'AS 01 PQ 2603',
     status: 'docking', dockId: 'WH-03-B3', shipmentId: 'SHP-78472', reefer: true,
     progress: { done: 0, total: 8 }, etaMin: 1, distanceLeftM: 24, speedKmh: 22, cargo: { pallets: 8, capacity: 8, weightT: 3.6 } }),
 
   // WH-04
-  truck({ id: 'TRK-2205', siteId: 'WH-04', carrier: 'waretrack', driver: 'Sam Chen', plate: 'ZBY-5648',
+  truck({ id: 'TRK-2205', siteId: 'WH-04', carrier: 'waretrack', driver: 'Karthik Raja', plate: 'TN 23 RS 2205',
     status: 'unloading', dockId: 'WH-04-IN1', shipmentId: 'SHP-78450',
     progress: { done: 2, total: 6 }, etaMin: 13, cargo: { pallets: 3, capacity: 7, weightT: 1.2 } }),
-  truck({ id: 'TRK-2229', siteId: 'WH-04', carrier: 'nordline', driver: 'Lena Fischer', plate: 'NRD-2229',
+  truck({ id: 'TRK-2229', siteId: 'WH-04', carrier: 'nordline', driver: 'Lakshmi Narayanan', plate: 'TN 23 TU 2229',
     status: 'loading', dockId: 'WH-04-OUT2', shipmentId: 'SHP-78455',
     progress: { done: 3, total: 6 }, etaMin: 11, cargo: { pallets: 3, capacity: 6, weightT: 1.3 } }),
-  truck({ id: 'TRK-2307', siteId: 'WH-04', carrier: 'nordline', driver: 'Ada Larsen', plate: 'EKT-2897',
+  truck({ id: 'TRK-2307', siteId: 'WH-04', carrier: 'nordline', driver: 'Prakash Iyer', plate: 'TN 23 VW 2307',
     status: 'docking', dockId: 'WH-04-IN3', shipmentId: 'SHP-78456',
     progress: { done: 0, total: 8 }, etaMin: 1, distanceLeftM: 26, speedKmh: 6, cargo: { pallets: 8, capacity: 8, weightT: 3.2 } }),
-  truck({ id: 'TRK-2481', siteId: 'WH-04', carrier: 'cargoviva', driver: 'Alex Haddad', plate: 'WKH-3157',
+  truck({ id: 'TRK-2481', siteId: 'WH-04', carrier: 'cargoviva', driver: 'Suresh Kumar', plate: 'TN 23 XY 2481',
     status: 'en_route', dockId: 'WH-04-IN2', shipmentId: 'SHP-78466',
     progress: { done: 0, total: 10 }, etaMin: 1, distanceLeftM: 380, speedKmh: 23, cargo: { pallets: 10, capacity: 10, weightT: 4.1 } }),
 
   // WH-05
-  truck({ id: 'TRK-2339', siteId: 'WH-05', carrier: 'cargoviva', driver: 'Nina Weber', plate: 'CGV-2339',
+  truck({ id: 'TRK-2339', siteId: 'WH-05', carrier: 'cargoviva', driver: 'Anil Deshmukh', plate: 'MH 31 ZA 2339',
     status: 'loading', dockId: 'WH-05-B1', shipmentId: 'SHP-78458',
     progress: { done: 1, total: 5 }, etaMin: 13, cargo: { pallets: 1, capacity: 6, weightT: 0.5 } }),
-  truck({ id: 'TRK-2574', siteId: 'WH-05', carrier: 'nordline', driver: 'Jonas Berg', plate: 'NRD-2574',
+  truck({ id: 'TRK-2574', siteId: 'WH-05', carrier: 'nordline', driver: 'Sneha Joshi', plate: 'MH 31 BC 2574',
     status: 'loading', dockId: 'WH-05-B2', shipmentId: 'SHP-78459',
     progress: { done: 0, total: 4 }, etaMin: 15, cargo: { pallets: 0, capacity: 6, weightT: 0 } }),
-  truck({ id: 'TRK-2372', siteId: 'WH-05', carrier: 'waretrack', driver: 'Luis Walsh', plate: 'TTC-2870',
+  truck({ id: 'TRK-2372', siteId: 'WH-05', carrier: 'waretrack', driver: 'Vijay Kulkarni', plate: 'MH 31 DE 2372',
     status: 'docking', dockId: 'WH-05-B3', shipmentId: 'SHP-78460',
     progress: { done: 0, total: 6 }, etaMin: 1, distanceLeftM: 5, speedKmh: 11, cargo: { pallets: 6, capacity: 6, weightT: 2.5 } }),
-  truck({ id: 'TRK-2412', siteId: 'WH-05', carrier: 'nordline', driver: 'Mia Russo', plate: 'NRD-2412',
+  truck({ id: 'TRK-2412', siteId: 'WH-05', carrier: 'nordline', driver: 'Asha Pawar', plate: 'MH 31 FG 2412',
     status: 'at_gate', dockId: 'WH-05-B4', shipmentId: 'SHP-78462',
     progress: { done: 0, total: 5 }, etaMin: 2, distanceLeftM: 60, speedKmh: 0, cargo: { pallets: 5, capacity: 6, weightT: 2.1 } }),
 ]
@@ -238,27 +248,27 @@ const forklift = (o) => ({
 })
 
 export const FORKLIFTS = [
-  forklift({ id: 'FL-01', siteId: 'WH-01', operator: 'Sam Haddad', model: 'Toyota 8FBE18', status: 'loading', task: 'Loading TRK-2051 at Bay 1', truckId: 'TRK-2051', battery: 75, movesToday: 28, chargerId: 'WH-01-C1' }),
-  forklift({ id: 'FL-02', siteId: 'WH-01', operator: 'Maya Ortiz', model: 'Linde E20', status: 'idle', task: 'Waiting for work', truckId: null, battery: 64, movesToday: 19, chargerId: 'WH-01-C2' }),
+  forklift({ id: 'FL-01', siteId: 'WH-01', operator: 'Arjun Singh', model: 'Toyota 8FBE18', status: 'loading', task: 'Loading TRK-2051 at Bay 1', truckId: 'TRK-2051', battery: 75, movesToday: 28, chargerId: 'WH-01-C1' }),
+  forklift({ id: 'FL-02', siteId: 'WH-01', operator: 'Kavita Nair', model: 'Linde E20', status: 'idle', task: 'Waiting for work', truckId: null, battery: 64, movesToday: 19, chargerId: 'WH-01-C2' }),
 
-  forklift({ id: 'FL-03', siteId: 'WH-02', operator: 'Liam Brooks', model: 'Toyota 8FBE18', status: 'loading', task: 'Loading TRK-2127 at Bay 3', truckId: 'TRK-2127', battery: 78, movesToday: 41, chargerId: 'WH-02-C1' }),
-  forklift({ id: 'FL-04', siteId: 'WH-02', operator: 'Chloe Martin', model: 'Jungheinrich EFG 216', status: 'unloading', task: 'Unloading TRK-2104 at Bay 1', truckId: 'TRK-2104', battery: 66, movesToday: 33, chargerId: 'WH-02-C2' }),
-  forklift({ id: 'FL-05', siteId: 'WH-02', operator: 'Ben Carter', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 41, movesToday: 36, chargerId: 'WH-02-C3' }),
-  forklift({ id: 'FL-06', siteId: 'WH-02', operator: 'Sofia Rossi', model: 'Linde E20', status: 'idle', task: 'Waiting for work', truckId: null, battery: 97, movesToday: 12, chargerId: 'WH-02-C4' }),
+  forklift({ id: 'FL-03', siteId: 'WH-02', operator: 'Rohan Desai', model: 'Toyota 8FBE18', status: 'loading', task: 'Loading TRK-2127 at Bay 3', truckId: 'TRK-2127', battery: 78, movesToday: 41, chargerId: 'WH-02-C1' }),
+  forklift({ id: 'FL-04', siteId: 'WH-02', operator: 'Sneha Iyer', model: 'Jungheinrich EFG 216', status: 'unloading', task: 'Unloading TRK-2104 at Bay 1', truckId: 'TRK-2104', battery: 66, movesToday: 33, chargerId: 'WH-02-C2' }),
+  forklift({ id: 'FL-05', siteId: 'WH-02', operator: 'Vikram Rao', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 41, movesToday: 36, chargerId: 'WH-02-C3' }),
+  forklift({ id: 'FL-06', siteId: 'WH-02', operator: 'Ananya Reddy', model: 'Linde E20', status: 'idle', task: 'Waiting for work', truckId: null, battery: 97, movesToday: 12, chargerId: 'WH-02-C4' }),
 
-  forklift({ id: 'FL-07', siteId: 'WH-03', operator: 'Kenji Mori', model: 'Toyota 8FBE18', status: 'unloading', task: 'Unloading TRK-2148 at Bay 2', truckId: 'TRK-2148', battery: 78, movesToday: 31, chargerId: 'WH-03-C1' }),
-  forklift({ id: 'FL-08', siteId: 'WH-03', operator: 'Aisha Bello', model: 'Jungheinrich EFG 216', status: 'unloading', task: 'Unloading TRK-2471 at Bay 1', truckId: 'TRK-2471', battery: 70, movesToday: 27, chargerId: 'WH-03-C2' }),
-  forklift({ id: 'FL-09', siteId: 'WH-03', operator: 'Pedro Alves', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 58, movesToday: 22, chargerId: 'WH-03-C3' }),
+  forklift({ id: 'FL-07', siteId: 'WH-03', operator: 'Bhaben Gogoi', model: 'Toyota 8FBE18', status: 'unloading', task: 'Unloading TRK-2148 at Bay 2', truckId: 'TRK-2148', battery: 78, movesToday: 31, chargerId: 'WH-03-C1' }),
+  forklift({ id: 'FL-08', siteId: 'WH-03', operator: 'Pooja Borah', model: 'Jungheinrich EFG 216', status: 'unloading', task: 'Unloading TRK-2471 at Bay 1', truckId: 'TRK-2471', battery: 70, movesToday: 27, chargerId: 'WH-03-C2' }),
+  forklift({ id: 'FL-09', siteId: 'WH-03', operator: 'Dilip Saikia', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 58, movesToday: 22, chargerId: 'WH-03-C3' }),
 
-  forklift({ id: 'FL-10', siteId: 'WH-04', operator: 'Zoe Reyes', model: 'Jungheinrich EFG 216', status: 'unloading', task: 'Unloading TRK-2205 at In 1', truckId: 'TRK-2205', battery: 84, movesToday: 38, chargerId: 'WH-04-C1', carryingPalletId: 'PAL-1060' }),
-  forklift({ id: 'FL-11', siteId: 'WH-04', operator: 'Noah Kim', model: 'Linde E20', status: 'loading', task: 'Loading TRK-2229 at Out 2', truckId: 'TRK-2229', battery: 82, movesToday: 35, chargerId: 'WH-04-C2' }),
-  forklift({ id: 'FL-12', siteId: 'WH-04', operator: 'Zoe Larsen', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 86, movesToday: 24, chargerId: 'WH-04-C3' }),
-  forklift({ id: 'FL-13', siteId: 'WH-04', operator: 'Omar Diaz', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 91, movesToday: 21, chargerId: 'WH-04-C4' }),
-  forklift({ id: 'FL-14', siteId: 'WH-04', operator: 'Priya Shah', model: 'Jungheinrich EFG 216', status: 'idle', task: 'Waiting for work', truckId: null, battery: 100, movesToday: 17, chargerId: 'WH-04-C5' }),
+  forklift({ id: 'FL-10', siteId: 'WH-04', operator: 'Karthik S', model: 'Jungheinrich EFG 216', status: 'unloading', task: 'Unloading TRK-2205 at In 1', truckId: 'TRK-2205', battery: 84, movesToday: 38, chargerId: 'WH-04-C1', carryingPalletId: 'PAL-1060' }),
+  forklift({ id: 'FL-11', siteId: 'WH-04', operator: 'Arun Pandian', model: 'Linde E20', status: 'loading', task: 'Loading TRK-2229 at Out 2', truckId: 'TRK-2229', battery: 82, movesToday: 35, chargerId: 'WH-04-C2' }),
+  forklift({ id: 'FL-12', siteId: 'WH-04', operator: 'Murugan R', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 86, movesToday: 24, chargerId: 'WH-04-C3' }),
+  forklift({ id: 'FL-13', siteId: 'WH-04', operator: 'Suresh Babu', model: 'Toyota 8FBE18', status: 'charging', task: 'Charging at bay', truckId: null, battery: 91, movesToday: 21, chargerId: 'WH-04-C4' }),
+  forklift({ id: 'FL-14', siteId: 'WH-04', operator: 'Divya Krishnan', model: 'Jungheinrich EFG 216', status: 'idle', task: 'Waiting for work', truckId: null, battery: 100, movesToday: 17, chargerId: 'WH-04-C5' }),
 
-  forklift({ id: 'FL-15', siteId: 'WH-05', operator: 'Ines Moreau', model: 'Toyota 8FBE18', status: 'loading', task: 'Loading TRK-2339 at Bay 1', truckId: 'TRK-2339', battery: 94, movesToday: 34, chargerId: 'WH-05-C1' }),
-  forklift({ id: 'FL-16', siteId: 'WH-05', operator: 'Felix Wagner', model: 'Linde E20', status: 'charging', task: 'Charging at bay', truckId: null, battery: 52, movesToday: 29, chargerId: 'WH-05-C2' }),
-  forklift({ id: 'FL-17', siteId: 'WH-05', operator: 'Hana Sato', model: 'Toyota 8FBE18', status: 'idle', task: 'Waiting for work', truckId: null, battery: 88, movesToday: 15, chargerId: 'WH-05-C3' }),
+  forklift({ id: 'FL-15', siteId: 'WH-05', operator: 'Sachin More', model: 'Toyota 8FBE18', status: 'loading', task: 'Loading TRK-2339 at Bay 1', truckId: 'TRK-2339', battery: 94, movesToday: 34, chargerId: 'WH-05-C1' }),
+  forklift({ id: 'FL-16', siteId: 'WH-05', operator: 'Neha Shinde', model: 'Linde E20', status: 'charging', task: 'Charging at bay', truckId: null, battery: 52, movesToday: 29, chargerId: 'WH-05-C2' }),
+  forklift({ id: 'FL-17', siteId: 'WH-05', operator: 'Amol Kale', model: 'Toyota 8FBE18', status: 'idle', task: 'Waiting for work', truckId: null, battery: 88, movesToday: 15, chargerId: 'WH-05-C3' }),
 ]
 
 // ───────────────────────────── Chargers ─────────────────────────────
@@ -305,88 +315,88 @@ const pallet = (o) => ({
 
 export const PALLETS = [
   // WH-01
-  pallet({ id: 'PAL-1026', siteId: 'WH-01', sku: 'CEM-UT-50', slot: 'S01', quantity: 30, grossKg: 1500, lot: 'L2501-870', received: 'Apr 19, 16:29' }),
-  pallet({ id: 'PAL-1027', siteId: 'WH-01', sku: 'RICE-SM-25', slot: 'S02', quantity: 40, grossKg: 1000, lot: 'L2501-871', received: 'Apr 19, 16:41', pinned: true }),
+  pallet({ id: 'PAL-1026', siteId: 'WH-01', sku: 'SAR-BNR', slot: 'S01', quantity: 20, grossKg: 300, lot: 'L2501-870', received: 'Apr 19, 16:29' }),
+  pallet({ id: 'PAL-1027', siteId: 'WH-01', sku: 'CARP-BHD', slot: 'S02', quantity: 6, grossKg: 168, lot: 'L2501-871', received: 'Apr 19, 16:41', pinned: true }),
   pallet({ id: 'PAL-1028', siteId: 'WH-01', sku: 'ATTA-AASH-30', slot: 'S03', quantity: 30, grossKg: 900, lot: 'L2501-874', received: 'Apr 20, 07:12', pinned: true }),
-  pallet({ id: 'PAL-1029', siteId: 'WH-01', sku: 'CEM-UT-50', slot: 'S04', quantity: 30, grossKg: 1500, lot: 'L2501-871', received: 'Apr 20, 07:30', pinned: true, status: 'stored' }),
-  pallet({ id: 'PAL-1031', siteId: 'WH-01', sku: 'OIL-SF-15', slot: 'S05', quantity: 60, grossKg: 828, lot: 'L2501-902', received: 'Apr 20, 08:05', status: 'stored' }),
-  pallet({ id: 'PAL-1032', siteId: 'WH-01', sku: 'RICE-SM-25', slot: 'S06', quantity: 40, grossKg: 1000, lot: 'L2501-871', received: 'Apr 20, 08:16', status: 'stored' }),
+  pallet({ id: 'PAL-1029', siteId: 'WH-01', sku: 'SAR-BNR', slot: 'S04', quantity: 20, grossKg: 300, lot: 'L2501-871', received: 'Apr 20, 07:30', pinned: true, status: 'stored' }),
+  pallet({ id: 'PAL-1031', siteId: 'WH-01', sku: 'CEM-UT-50', slot: 'S05', quantity: 30, grossKg: 1500, lot: 'L2501-902', received: 'Apr 20, 08:05', status: 'stored' }),
+  pallet({ id: 'PAL-1032', siteId: 'WH-01', sku: 'CARP-BHD', slot: 'S06', quantity: 6, grossKg: 168, lot: 'L2501-871', received: 'Apr 20, 08:16', status: 'stored' }),
 
   // WH-02
-  pallet({ id: 'PAL-1040', siteId: 'WH-02', sku: 'FMCG-HUL-12', slot: 'S01', quantity: 80, grossKg: 640, lot: 'L2502-114', received: 'Apr 20, 06:58', pinned: true }),
-  pallet({ id: 'PAL-1041', siteId: 'WH-02', sku: 'OIL-SF-15', slot: 'S02', quantity: 60, grossKg: 828, lot: 'L2502-120', received: 'Apr 20, 07:21', pinned: true }),
-  pallet({ id: 'PAL-1042', siteId: 'WH-02', sku: 'TMT-FE500', slot: 'S03', quantity: 5, grossKg: 3000, lot: 'L2502-131', received: 'Apr 20, 07:44' }),
+  pallet({ id: 'PAL-1040', siteId: 'WH-02', sku: 'TXT-SUR', slot: 'S01', quantity: 8, grossKg: 240, lot: 'L2502-114', received: 'Apr 20, 06:58', pinned: true }),
+  pallet({ id: 'PAL-1041', siteId: 'WH-02', sku: 'DIA-SUR', slot: 'S02', quantity: 40, grossKg: 60, lot: 'L2502-120', received: 'Apr 20, 07:21', pinned: true }),
+  pallet({ id: 'PAL-1042', siteId: 'WH-02', sku: 'TILE-KAJ-30', slot: 'S03', quantity: 40, grossKg: 1200, lot: 'L2502-131', received: 'Apr 20, 07:44' }),
   pallet({ id: 'PAL-1043', siteId: 'WH-02', sku: 'OIL-SF-15', slot: 'S04', quantity: 60, grossKg: 828, lot: 'L2502-120', received: 'Apr 20, 08:02' }),
-  pallet({ id: 'PAL-1044', siteId: 'WH-02', sku: 'FMCG-HUL-12', slot: 'S05', quantity: 80, grossKg: 640, lot: 'L2502-140', received: 'Apr 20, 08:30' }),
+  pallet({ id: 'PAL-1044', siteId: 'WH-02', sku: 'TXT-SUR', slot: 'S05', quantity: 8, grossKg: 240, lot: 'L2502-140', received: 'Apr 20, 08:30' }),
 
   // WH-03
-  pallet({ id: 'PAL-1050', siteId: 'WH-03', sku: 'RICE-SM-25', slot: 'S01', quantity: 40, grossKg: 1000, lot: 'L2503-018', received: 'Apr 20, 06:40', pinned: true }),
-  pallet({ id: 'PAL-1051', siteId: 'WH-03', sku: 'ATTA-AASH-30', slot: 'S02', quantity: 30, grossKg: 900, lot: 'L2503-022', received: 'Apr 20, 07:05', pinned: true }),
-  pallet({ id: 'PAL-1052', siteId: 'WH-03', sku: 'UREA-NP-45', slot: 'S03', quantity: 30, grossKg: 1350, lot: 'L2503-030', received: 'Apr 20, 07:52' }),
+  pallet({ id: 'PAL-1050', siteId: 'WH-03', sku: 'TEA-ASM', slot: 'S01', quantity: 40, grossKg: 880, lot: 'L2503-018', received: 'Apr 20, 06:40', pinned: true }),
+  pallet({ id: 'PAL-1051', siteId: 'WH-03', sku: 'SPICE-KER', slot: 'S02', quantity: 30, grossKg: 750, lot: 'L2503-022', received: 'Apr 20, 07:05', pinned: true }),
+  pallet({ id: 'PAL-1052', siteId: 'WH-03', sku: 'RICE-SM-25', slot: 'S03', quantity: 40, grossKg: 1000, lot: 'L2503-030', received: 'Apr 20, 07:52' }),
 
   // WH-04
-  pallet({ id: 'PAL-1060', siteId: 'WH-04', sku: 'TMT-FE500', slot: 'S01', quantity: 5, grossKg: 3000, lot: 'L2504-310', received: 'Apr 20, 09:38', status: 'moving', carriedBy: 'FL-10' }),
-  pallet({ id: 'PAL-1061', siteId: 'WH-04', sku: 'CEM-UT-50', slot: 'S02', quantity: 30, grossKg: 1500, lot: 'L2504-288', received: 'Apr 20, 08:12' }),
-  pallet({ id: 'PAL-1062', siteId: 'WH-04', sku: 'TILE-KAJ-30', slot: 'S03', quantity: 40, grossKg: 1200, lot: 'L2504-290', received: 'Apr 20, 08:20', pinned: true }),
-  pallet({ id: 'PAL-1063', siteId: 'WH-04', sku: 'LPG-HP-14', slot: 'S04', quantity: 14, grossKg: 199, lot: 'L2504-296', received: 'Apr 20, 08:47', pinned: true }),
-  pallet({ id: 'PAL-1064', siteId: 'WH-04', sku: 'CEM-UT-50', slot: 'S05', quantity: 30, grossKg: 1500, lot: 'L2504-301', received: 'Apr 20, 09:02' }),
-  pallet({ id: 'PAL-1065', siteId: 'WH-04', sku: 'TILE-KAJ-30', slot: 'S06', quantity: 40, grossKg: 1200, lot: 'L2504-305', received: 'Apr 20, 09:15' }),
+  pallet({ id: 'PAL-1060', siteId: 'WH-04', sku: 'CRACKR-SVK', slot: 'S01', quantity: 80, grossKg: 960, lot: 'L2504-310', received: 'Apr 20, 09:38', status: 'moving', carriedBy: 'FL-10' }),
+  pallet({ id: 'PAL-1061', siteId: 'WH-04', sku: 'FMCG-HUL-12', slot: 'S02', quantity: 80, grossKg: 640, lot: 'L2504-288', received: 'Apr 20, 08:12' }),
+  pallet({ id: 'PAL-1062', siteId: 'WH-04', sku: 'TMT-FE500', slot: 'S03', quantity: 5, grossKg: 3000, lot: 'L2504-290', received: 'Apr 20, 08:20', pinned: true }),
+  pallet({ id: 'PAL-1063', siteId: 'WH-04', sku: 'UREA-NP-45', slot: 'S04', quantity: 30, grossKg: 1350, lot: 'L2504-296', received: 'Apr 20, 08:47', pinned: true }),
+  pallet({ id: 'PAL-1064', siteId: 'WH-04', sku: 'CRACKR-SVK', slot: 'S05', quantity: 80, grossKg: 960, lot: 'L2504-301', received: 'Apr 20, 09:02' }),
+  pallet({ id: 'PAL-1065', siteId: 'WH-04', sku: 'FMCG-HUL-12', slot: 'S06', quantity: 80, grossKg: 640, lot: 'L2504-305', received: 'Apr 20, 09:15' }),
 
   // WH-05
-  pallet({ id: 'PAL-1090', siteId: 'WH-05', sku: 'FMCG-HUL-12', slot: 'S01', quantity: 80, grossKg: 640, lot: 'L2505-401', received: 'Apr 20, 07:10', pinned: true }),
-  pallet({ id: 'PAL-1091', siteId: 'WH-05', sku: 'CEM-UT-50', slot: 'S02', quantity: 30, grossKg: 1500, lot: 'L2505-412', received: 'Apr 20, 07:55' }),
-  pallet({ id: 'PAL-1092', siteId: 'WH-05', sku: 'UREA-NP-45', slot: 'S03', quantity: 30, grossKg: 1350, lot: 'L2505-420', received: 'Apr 20, 08:25', pinned: true }),
+  pallet({ id: 'PAL-1090', siteId: 'WH-05', sku: 'COTTON-MH', slot: 'S01', quantity: 6, grossKg: 1020, lot: 'L2505-401', received: 'Apr 20, 07:10', pinned: true }),
+  pallet({ id: 'PAL-1091', siteId: 'WH-05', sku: 'AUTO-PUN', slot: 'S02', quantity: 10, grossKg: 450, lot: 'L2505-412', received: 'Apr 20, 07:55' }),
+  pallet({ id: 'PAL-1092', siteId: 'WH-05', sku: 'LPG-HP-14', slot: 'S03', quantity: 14, grossKg: 199, lot: 'L2505-420', received: 'Apr 20, 08:25', pinned: true }),
 ]
 
 // ───────────────────────────── Shipments (orders) ─────────────────────────────
 // direction 'outbound': loaded here, leaves to `toLabel`.  'inbound': arrives here and is unloaded.
 // times: completed milestone clock times (sim minutes). eta*: forecast clock times (sim minutes).
 export const SHIPMENTS = [
-  { id: 'SHP-78442', truckId: 'TRK-2051', siteId: 'WH-01', dockId: 'WH-01-B1', direction: 'outbound', customer: 'Keystone Supply Co.', toLabel: 'Philadelphia, PA',
+  { id: 'SHP-78442', truckId: 'TRK-2051', siteId: 'WH-01', dockId: 'WH-01-B1', direction: 'outbound', customer: 'Banaras Handloom Exports', toLabel: 'Delhi ICD, Delhi',
     times: { confirmed: t('06:49'), picked: t('08:19') }, eta: { loaded: t('09:53'), transit: t('10:01'), delivered: t('10:33') } },
-  { id: 'SHP-78446', truckId: 'TRK-2287', siteId: 'WH-01', dockId: 'WH-01-B2', direction: 'inbound', customer: 'Bluepeak Foods', toLabel: 'WH-01 Riverside Hub',
+  { id: 'SHP-78446', truckId: 'TRK-2287', siteId: 'WH-01', dockId: 'WH-01-B2', direction: 'inbound', customer: 'Bhadohi Carpet Co.', toLabel: 'Varanasi Depot',
     times: { confirmed: t('06:31'), picked: t('07:58'), loaded: t('08:47'), transit: t('09:05') }, eta: { arrive: t('09:43'), done: t('10:05') } },
 
-  { id: 'SHP-78441', truckId: 'TRK-2127', siteId: 'WH-02', dockId: 'WH-02-B3', direction: 'outbound', customer: 'Harborline Retail', toLabel: 'Hartford, CT',
+  { id: 'SHP-78441', truckId: 'TRK-2127', siteId: 'WH-02', dockId: 'WH-02-B3', direction: 'outbound', customer: 'Surat Fabric Mills', toLabel: 'Bhiwandi, Maharashtra',
     times: { confirmed: t('06:22'), picked: t('08:02') }, eta: { loaded: t('09:49'), transit: t('09:55'), delivered: t('12:10') } },
-  { id: 'SHP-78444', truckId: 'TRK-2104', siteId: 'WH-02', dockId: 'WH-02-B1', direction: 'inbound', customer: 'Brightway Electric', toLabel: 'WH-02 Northgate DC',
+  { id: 'SHP-78444', truckId: 'TRK-2104', siteId: 'WH-02', dockId: 'WH-02-B1', direction: 'inbound', customer: 'Mumbai Diamond Bourse', toLabel: 'Surat Distribution Hub',
     times: { confirmed: t('06:43'), picked: t('08:20'), loaded: t('09:15'), transit: t('09:41') }, eta: { arrive: t('09:44'), done: t('10:00') } },
-  { id: 'SHP-78452', truckId: 'TRK-2658', siteId: 'WH-02', dockId: 'WH-02-B2', direction: 'inbound', customer: 'Cargoviva', toLabel: 'WH-02 Northgate DC',
+  { id: 'SHP-78452', truckId: 'TRK-2658', siteId: 'WH-02', dockId: 'WH-02-B2', direction: 'inbound', customer: 'Morbi Ceramic Cluster', toLabel: 'Surat Distribution Hub',
     times: { confirmed: t('06:55'), picked: t('08:11'), loaded: t('09:02'), transit: t('09:20') }, eta: { arrive: t('09:41'), done: t('10:08') } },
-  { id: 'SHP-78453', truckId: 'TRK-2526', siteId: 'WH-02', dockId: 'WH-02-B4', direction: 'inbound', customer: 'Medline East', toLabel: 'WH-02 Northgate DC',
+  { id: 'SHP-78453', truckId: 'TRK-2526', siteId: 'WH-02', dockId: 'WH-02-B4', direction: 'inbound', customer: 'Kandla Solvent Extractors', toLabel: 'Surat Distribution Hub',
     times: { confirmed: t('07:05'), picked: t('08:26'), loaded: t('09:10'), transit: t('09:24') }, eta: { arrive: t('09:42'), done: t('10:12') } },
 
-  { id: 'SHP-78448', truckId: 'TRK-2148', siteId: 'WH-03', dockId: 'WH-03-B2', direction: 'inbound', customer: 'FreshCo Markets', toLabel: 'WH-03 Eastport Cold Chain',
+  { id: 'SHP-78448', truckId: 'TRK-2148', siteId: 'WH-03', dockId: 'WH-03-B2', direction: 'inbound', customer: 'Assam Tea Traders', toLabel: 'Guwahati Cold Chain',
     times: { confirmed: t('06:40'), picked: t('08:19'), loaded: t('09:16'), transit: t('09:42') }, eta: { arrive: t('09:44'), done: t('09:52') } },
-  { id: 'SHP-78449', truckId: 'TRK-2471', siteId: 'WH-03', dockId: 'WH-03-B1', direction: 'inbound', customer: 'Polar Foods', toLabel: 'WH-03 Eastport Cold Chain',
+  { id: 'SHP-78449', truckId: 'TRK-2471', siteId: 'WH-03', dockId: 'WH-03-B1', direction: 'inbound', customer: 'Idukki Spice Cooperative', toLabel: 'Guwahati Cold Chain',
     times: { confirmed: t('06:52'), picked: t('08:30'), loaded: t('09:18'), transit: t('09:31') }, eta: { arrive: t('09:39'), done: t('10:04') } },
-  { id: 'SHP-78472', truckId: 'TRK-2603', siteId: 'WH-03', dockId: 'WH-03-B3', direction: 'inbound', customer: 'Harbor & Co.', toLabel: 'WH-03 Eastport Cold Chain',
+  { id: 'SHP-78472', truckId: 'TRK-2603', siteId: 'WH-03', dockId: 'WH-03-B3', direction: 'inbound', customer: 'Andhra Rice Mills', toLabel: 'Guwahati Cold Chain',
     times: { confirmed: t('07:07'), picked: t('08:34'), loaded: t('09:18'), transit: t('09:32') }, eta: { arrive: t('09:52'), done: t('10:32') } },
 
-  { id: 'SHP-78450', truckId: 'TRK-2205', siteId: 'WH-04', dockId: 'WH-04-IN1', direction: 'inbound', customer: 'Oakridge Market', toLabel: 'WH-04 Southfield Cross-Dock',
+  { id: 'SHP-78450', truckId: 'TRK-2205', siteId: 'WH-04', dockId: 'WH-04-IN1', direction: 'inbound', customer: 'Chennai Chemical Supply', toLabel: 'Sivakasi Cross-Dock',
     times: { confirmed: t('06:57'), picked: t('08:25'), loaded: t('09:10'), transit: t('09:26') }, eta: { arrive: t('09:35'), done: t('09:56') } },
-  { id: 'SHP-78455', truckId: 'TRK-2229', siteId: 'WH-04', dockId: 'WH-04-OUT2', direction: 'outbound', customer: 'Lehigh Outfitters', toLabel: 'Allentown, PA',
+  { id: 'SHP-78455', truckId: 'TRK-2229', siteId: 'WH-04', dockId: 'WH-04-OUT2', direction: 'outbound', customer: 'Delhi Crackers Distributors', toLabel: 'Delhi, Delhi',
     times: { confirmed: t('06:48'), picked: t('08:40') }, eta: { loaded: t('09:54'), transit: t('10:00'), delivered: t('11:25') } },
-  { id: 'SHP-78456', truckId: 'TRK-2307', siteId: 'WH-04', dockId: 'WH-04-IN3', direction: 'inbound', customer: 'Sunvale Grocers', toLabel: 'WH-04 Southfield Cross-Dock',
+  { id: 'SHP-78456', truckId: 'TRK-2307', siteId: 'WH-04', dockId: 'WH-04-IN3', direction: 'inbound', customer: 'Coimbatore Paper Mills', toLabel: 'Sivakasi Cross-Dock',
     times: { confirmed: t('06:37'), picked: t('08:16'), loaded: t('09:12'), transit: t('09:26') }, eta: { arrive: t('09:45'), done: t('10:25') } },
-  { id: 'SHP-78466', truckId: 'TRK-2481', siteId: 'WH-04', dockId: 'WH-04-IN2', direction: 'inbound', customer: 'Halcyon Retail', toLabel: 'WH-04 Southfield Cross-Dock',
+  { id: 'SHP-78466', truckId: 'TRK-2481', siteId: 'WH-04', dockId: 'WH-04-IN2', direction: 'inbound', customer: 'Madurai Packaging Co.', toLabel: 'Sivakasi Cross-Dock',
     times: { confirmed: t('07:03'), picked: t('08:29'), loaded: t('09:12'), transit: t('09:26') }, eta: { arrive: t('09:45'), done: t('10:25') } },
 
-  { id: 'SHP-78458', truckId: 'TRK-2339', siteId: 'WH-05', dockId: 'WH-05-B1', direction: 'outbound', customer: 'Northstar Robotics', toLabel: 'Trenton, NJ',
+  { id: 'SHP-78458', truckId: 'TRK-2339', siteId: 'WH-05', dockId: 'WH-05-B1', direction: 'outbound', customer: 'Nagpur Cotton Traders', toLabel: 'Bhiwandi, Maharashtra',
     times: { confirmed: t('06:53'), picked: t('08:28') }, eta: { loaded: t('10:05'), transit: t('10:13'), delivered: t('10:45') } },
-  { id: 'SHP-78459', truckId: 'TRK-2574', siteId: 'WH-05', dockId: 'WH-05-B2', direction: 'outbound', customer: 'Coastal Clinics', toLabel: 'Stamford, CT',
+  { id: 'SHP-78459', truckId: 'TRK-2574', siteId: 'WH-05', dockId: 'WH-05-B2', direction: 'outbound', customer: 'Nagpur Auto Components', toLabel: 'Chakan, Pune',
     times: { confirmed: t('07:12'), picked: t('08:51') }, eta: { loaded: t('10:07'), transit: t('10:12'), delivered: t('11:58') } },
-  { id: 'SHP-78460', truckId: 'TRK-2372', siteId: 'WH-05', dockId: 'WH-05-B3', direction: 'inbound', customer: 'Sunvale Grocers', toLabel: 'WH-05 Westgate Robotics Hub',
+  { id: 'SHP-78460', truckId: 'TRK-2372', siteId: 'WH-05', dockId: 'WH-05-B3', direction: 'inbound', customer: 'Raipur Steel Mills', toLabel: 'Nagpur Robotics Hub',
     times: { confirmed: t('07:10'), picked: t('08:32'), loaded: t('09:21'), transit: t('09:35') }, eta: { arrive: t('09:53'), done: t('10:33') } },
-  { id: 'SHP-78462', truckId: 'TRK-2412', siteId: 'WH-05', dockId: 'WH-05-B4', direction: 'inbound', customer: 'Metro Office Supply', toLabel: 'WH-05 Westgate Robotics Hub',
+  { id: 'SHP-78462', truckId: 'TRK-2412', siteId: 'WH-05', dockId: 'WH-05-B4', direction: 'inbound', customer: 'IOC Koradi Terminal', toLabel: 'Nagpur Robotics Hub',
     times: { confirmed: t('07:18'), picked: t('08:44'), loaded: t('09:24'), transit: t('09:38') }, eta: { arrive: t('09:54'), done: t('10:30') } },
 ]
 
 // ───────────────────────────── Notifications ─────────────────────────────
 export const NOTIFICATIONS = [
-  { id: 'N1', tone: 'orange', title: 'Low stock · Wheat Atta Sack', body: 'WH-01 Riverside Hub is at 210 sacks (min 300).', at: t('09:36'), unread: true },
-  { id: 'N2', tone: 'blue', title: 'TRK-2481 approaching', body: 'Cargoviva truck booked for WH-04 · In 2.', at: t('09:38'), unread: true },
-  { id: 'N3', tone: 'orange', title: 'Low stock · TMT Steel Rods', body: 'WH-04 Southfield Cross-Dock is at 73 bundles.', at: t('09:31'), unread: true },
-  { id: 'N4', tone: 'green', title: 'SHP-78439 delivered', body: 'Delivered to Newark, NJ — 4 min early.', at: t('09:22'), unread: false },
-  { id: 'N5', tone: 'gray', title: 'FL-05 battery low', body: 'Sent to charger C3 at WH-02 Northgate DC.', at: t('09:12'), unread: false },
+  { id: 'N1', tone: 'orange', title: 'Low stock · Wheat Atta Sack', body: 'WH-01 Varanasi Depot is at 210 sacks (min 300).', at: t('09:36'), unread: true },
+  { id: 'N2', tone: 'blue', title: 'TRK-2481 approaching', body: 'Allcargo truck booked for WH-04 · In 2.', at: t('09:38'), unread: true },
+  { id: 'N3', tone: 'orange', title: 'Low stock · Firecracker Carton', body: 'WH-04 Sivakasi Cross-Dock is at 73 cartons (pre-Diwali).', at: t('09:31'), unread: true },
+  { id: 'N4', tone: 'green', title: 'SHP-78439 delivered', body: 'Delivered to Delhi ICD — 4 min early.', at: t('09:22'), unread: false },
+  { id: 'N5', tone: 'gray', title: 'FL-05 battery low', body: 'Sent to charger C3 at WH-02 Surat Distribution Hub.', at: t('09:12'), unread: false },
 ]

@@ -1091,3 +1091,13 @@ svg { flex: none; }
 
 /* drag handle is mobile-only (the bottom sheet exists only on mobile) */
 .wt-sheet__handle { display: none; }
+
+/* ── TASK 1: mobile top bar spacing + avatar vertical alignment ── */
+@media (max-width: 820px) {
+  /* clear gap after the site selector; right cluster (search/help/bell/avatar) right-aligned */
+  body.is-mobile .tb-live { margin-left: 10px; }
+  body.is-mobile .tb-mobile-btn { margin-left: auto; }
+  /* avatar sits level with the other 32px icons (was 30px → 1px low) */
+  body.is-mobile .tb-user__btn { height: 32px; }
+  body.is-mobile .tb-user__avatar { width: 32px; height: 32px; }
+}

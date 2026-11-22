@@ -257,7 +257,7 @@ const DEFS = {
   'WH-01': {
     centre: pt(-6, -12), rotY: 0, gateSide: 'east', openSides: ['east'],
     building: {
-      variant: 'depot', width: 26, depth: 15, height: 12, label: 'WH-01', sign: 'WareTrack', subtitle: 'WH-01 · Riverside Hub',
+      variant: 'depot', width: 26, depth: 15, height: 12, label: 'WH-01', sign: 'WareTrack', subtitle: 'WH-01 · Varanasi Depot',
       // front-hall facade: Bay 2 (west) and Bay 1 (east) as the door plates in frame 01 read; a
       // cargo door on the rear hall and a big one on the east gable
       doors: [
@@ -306,7 +306,7 @@ const DEFS = {
   'WH-02': {
     centre: pt(304, -40), rotY: HALF_PI, gateSide: 'east',
     building: {
-      variant: 'dc', width: 84, depth: 32, height: 11, label: 'WH-02', sign: 'WareTrack', subtitle: 'WH-02 · Northgate DC',
+      variant: 'dc', width: 84, depth: 32, height: 11, label: 'WH-02', sign: 'WareTrack', subtitle: 'WH-02 · Surat DC',
       // local offsets run north (rotY = π/2): Bay 1 is the door next to the office (frame 15)
       doors: [
         door('WH-02-B1', 'south', -19, { height: 6, number: 1 }),
@@ -350,7 +350,7 @@ const DEFS = {
   'WH-03': {
     centre: pt(600, 34), rotY: 0, gateSide: 'south', platformDepth: 4.5,
     building: {
-      variant: 'cold', width: 74, depth: 40, height: 11, label: 'WH-03', sign: 'WareTrack', subtitle: 'WH-03 · Eastport Cold Chain',
+      variant: 'cold', width: 74, depth: 40, height: 11, label: 'WH-03', sign: 'WareTrack', subtitle: 'WH-03 · Guwahati Cold',
       // 4 narrow doors on the west half of the platform, the sign on the long blank east part (17)
       doors: [
         door('WH-03-B1', 'south', -11.2, { number: 1, width: 3.6, height: 4.8 }),
@@ -382,7 +382,7 @@ const DEFS = {
     // Out 1–3 between spare doors (frame 21)
     centre: pt(116, 304.5), rotY: 0, gateSide: 'south',
     building: {
-      variant: 'crossdock', width: 48, depth: 56, height: 6.5, label: 'WH-04', sign: 'WareTrack', subtitle: 'WH-04 · Southfield Cross-Dock',
+      variant: 'crossdock', width: 48, depth: 56, height: 6.5, label: 'WH-04', sign: 'WareTrack', subtitle: 'WH-04 · Sivakasi X-Dock',
       doors: [
         door('WH-04-IN1', 'south', -16.5, { number: 1 }),
         door('WH-04-IN2', 'south', -8, { number: 2 }),
@@ -432,7 +432,7 @@ const DEFS = {
     // a tall box with 4 big roller doors evenly spread along its east face (frames 22, 23)
     centre: pt(468, 318), rotY: HALF_PI, gateSide: 'south',
     building: {
-      variant: 'robotics', width: 48, depth: 44, height: 13, label: 'WH-05', sign: 'WareTrack', subtitle: 'WH-05 · Westgate Robotics Hub',
+      variant: 'robotics', width: 48, depth: 44, height: 13, label: 'WH-05', sign: 'WareTrack', subtitle: 'WH-05 · Nagpur Robotics',
       doors: [
         door('WH-05-B1', 'south', -17.4, { number: 1, width: 4.6, height: 5.6, state: 'closed', cargo: false }),
         door('WH-05-B2', 'south', -5.8, { number: 2, width: 4.6, height: 5.6, state: 'closed', cargo: false }),

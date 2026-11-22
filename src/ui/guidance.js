@@ -210,7 +210,7 @@ export const GLOSSARY = [
       { t: { en: 'Truck', hi: 'ट्रक', hg: 'Truck' },
         d: { en: 'A vehicle that carries goods between the warehouse and customers or suppliers.', hi: 'वाहन जो गोदाम और ग्राहक/सप्लायर के बीच माल ले जाता है।', hg: 'Vehicle jo godaam aur customer/supplier ke beech maal le jaata hai.' } },
       { t: { en: 'Carrier', hi: 'कैरियर', hg: 'Carrier' },
-        d: { en: 'The transport company running the truck (e.g. WareTrack Freight, Bluepeak, Nordline, Cargoviva).', hi: 'ट्रक चलाने वाली ट्रांसपोर्ट कंपनी (जैसे WareTrack Freight, Bluepeak, Nordline, Cargoviva)।', hg: 'Truck chalane wali transport company (jaise WareTrack Freight, Bluepeak, Nordline, Cargoviva).' } },
+        d: { en: 'The transport company running the truck (e.g. VRL Logistics, TCI Express, Blue Dart, Allcargo).', hi: 'ट्रक चलाने वाली ट्रांसपोर्ट कंपनी (जैसे VRL Logistics, TCI Express, Blue Dart, Allcargo)।', hg: 'Truck chalane wali transport company (jaise VRL Logistics, TCI Express, Blue Dart, Allcargo).' } },
       { t: { en: 'En route', hi: 'एन रूट', hg: 'En route' },
         d: { en: 'The truck is driving toward the warehouse.', hi: 'ट्रक गोदाम की ओर चल रहा है।', hg: 'Truck godaam ki ore chal raha hai.' } },
       { t: { en: 'At gate', hi: 'गेट पर', hg: 'At gate' },

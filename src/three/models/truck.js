@@ -184,22 +184,22 @@ const WHITE_CSS = '#f7f8fc' // = C.white, so painted areas match the vertex-colo
 
 const LIVERIES = {
   waretrack: {
-    name: 'WareTrack', tagline: 'Freight · Warehousing · Last-mile delivery', logo: 'cube',
+    name: 'VRL Logistics', tagline: 'Freight · Warehousing · Last-mile', logo: 'cube',
     cab: C.blue, stripe: null, roofTrim: C.blue,
     band: '#2f5bea', accent: '#aebff8', bandY: [0.7, 0.78], text: '#1b2147', frame: '#2f5bea', textScale: 1.12, logoScale: 0.42,
   },
   bluepeak: {
-    name: 'Bluepeak', tagline: 'Fresh food network', logo: 'mountain',
+    name: 'TCI Express', tagline: 'Supply chain solutions', logo: 'mountain',
     cab: C.white, stripe: C.navy, roofTrim: null,
     band: '#1f2a78', accent: '#b4bdf0', bandY: [0.62, 0.75], text: '#1f2a5c', glyph: '#1f2a78',
   },
   nordline: {
-    name: 'Nordline', tagline: 'Warehousing & Delivery', logo: 'nordline',
+    name: 'Blue Dart', tagline: 'Express distribution', logo: 'nordline',
     cab: C.white, stripe: C.teal, roofTrim: null,
     band: '#16a08b', accent: '#a6e3d7', bandY: [0.62, 0.74], text: '#127c6c', glyph: '#16a08b',
   },
   cargoviva: {
-    name: 'Cargoviva', tagline: 'Express cargo', logo: 'speed', italic: true,
+    name: 'Allcargo', tagline: 'Multimodal logistics', logo: 'speed', italic: true,
     cab: C.white, stripe: C.orange, roofTrim: null,
     band: '#f26b1d', accent: '#fbc6a2', bandY: [0.64, 0.76], text: '#e0621b', glyph: '#f26b1d',
   },

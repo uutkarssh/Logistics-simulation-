@@ -710,7 +710,7 @@ function landmarkFeatures(batch, scatter) {
   containerYard(batch, rect(570, 684, 136, 246), 911, { sparse: 0.3 })
   const depot = rect(566, 690, 262, 382)
   batch.addRect(centre(depot).x, centre(depot).z, rw(depot), rd(depot), Y_PAVE, M.lot())
-  const hall = createWarehouse({ variant: 'depot', width: 34, depth: 20, height: 11, label: 'NL', sign: 'Nordline', subtitle: 'Eastside depot' })
+  const hall = createWarehouse({ variant: 'depot', width: 34, depth: 20, height: 11, label: 'BD', sign: 'Blue Dart', subtitle: 'Regional depot' })
   hall.position.set(628, 0, 296)
   batch.addObject(hall)
   const box = createContainer({ color: C.container, label: 'MAERA LINE' })
