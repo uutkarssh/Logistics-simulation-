@@ -1,0 +1,9 @@
+# Exclude dev-only / build-time artefacts from the Vercel deployment upload.
+# They are not needed to build or run the app and only inflate the upload.
+dev/
+docs/
+scripts/
+.claude/
+.github/
+.gitignore
+*.log
