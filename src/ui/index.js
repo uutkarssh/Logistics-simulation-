@@ -72,7 +72,11 @@ function setupMobileSheet(root, regions) {
   sheet.id = 'wt-sheet'
   sheet.className = 'wt-region'
   sheet.setAttribute('data-mp', 'detail')
-  // tab bar (hidden on desktop via CSS)
+  // drag handle (swipe down to collapse, up to expand) + tab bar with a ✕ close button
+  const handle = document.createElement('div')
+  handle.className = 'wt-sheet__handle'
+  handle.setAttribute('role', 'button')
+  handle.setAttribute('aria-label', 'Drag or tap to collapse / expand the panel')
   const tabs = document.createElement('div')
   tabs.id = 'wt-sheet-tabs'
   tabs.setAttribute('role', 'tablist')
@@ -80,8 +84,8 @@ function setupMobileSheet(root, regions) {
     <button type="button" class="wt-sheet__tab" data-mp="detail" role="tab" aria-selected="true">Details</button>
     <button type="button" class="wt-sheet__tab" data-mp="fleet" role="tab" aria-selected="false">Fleet</button>
     <button type="button" class="wt-sheet__tab" data-mp="tracker" role="tab" aria-selected="false">Shipment</button>
-    <button type="button" class="wt-sheet__collapse" aria-label="Collapse panel">${icon('chevronDown', 18, { sw: 2 })}</button>`
-  sheet.append(regions['wt-detail'], regions['wt-fleet'], regions['wt-tracker'], tabs)
+    <button type="button" class="wt-sheet__close" aria-label="Close panel">${icon('close', 16, { sw: 2 })}</button>`
+  sheet.append(handle, tabs, regions['wt-detail'], regions['wt-fleet'], regions['wt-tracker'])
   root.appendChild(sheet)
 
   const setPanel = (mp, expand = true) => {
@@ -91,9 +95,21 @@ function setupMobileSheet(root, regions) {
   }
 
   tabs.addEventListener('click', (e) => {
+    if (e.target.closest('.wt-sheet__close')) { sheet.classList.add('is-collapsed'); return }
     const tab = e.target.closest('[data-mp]')
-    if (tab) { setPanel(tab.dataset.mp); return }
-    if (e.target.closest('.wt-sheet__collapse')) sheet.classList.toggle('is-collapsed')
+    if (tab) setPanel(tab.dataset.mp)
+  })
+
+  // handle: tap toggles; drag down collapses, drag up expands (bottom-sheet style)
+  let dragY = null
+  handle.addEventListener('pointerdown', (e) => { dragY = e.clientY; try { handle.setPointerCapture(e.pointerId) } catch {} })
+  handle.addEventListener('pointerup', (e) => {
+    if (dragY == null) return
+    const dy = e.clientY - dragY
+    dragY = null
+    if (Math.abs(dy) < 8) sheet.classList.toggle('is-collapsed')           // tap
+    else if (dy > 28) sheet.classList.add('is-collapsed')                   // swipe down → collapse
+    else if (dy < -28) sheet.classList.remove('is-collapsed')              // swipe up → expand
   })
 
   // selecting an entity (from the 3D view, search or a fleet row) jumps to the detail tab
