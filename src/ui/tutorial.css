@@ -13,6 +13,7 @@
   backdrop-filter: blur(3px);
   font-family: 'Poppins', system-ui, sans-serif;
   color: var(--text);
+  pointer-events: auto;
   animation: wt-tut-in .25s ease both;
 }
 .wt-tut[hidden] { display: none; }
