@@ -87,6 +87,9 @@ function setupMobileSheet(root, regions) {
     <button type="button" class="wt-sheet__close" aria-label="Close panel">${icon('close', 16, { sw: 2 })}</button>`
   sheet.append(handle, tabs, regions['wt-detail'], regions['wt-fleet'], regions['wt-tracker'])
   root.appendChild(sheet)
+  // mobile: start collapsed (peek) so the 3D view fills the screen on first load;
+  // expands automatically when the user selects anything (below).
+  sheet.classList.add('is-collapsed')
 
   const setPanel = (mp, expand = true) => {
     if (sheet.getAttribute('data-mp') !== mp) sheet.setAttribute('data-mp', mp)
@@ -112,12 +115,12 @@ function setupMobileSheet(root, regions) {
     else if (dy < -28) sheet.classList.remove('is-collapsed')              // swipe up → expand
   })
 
-  // selecting an entity (from the 3D view, search or a fleet row) jumps to the detail tab
+  // selecting anything (3D view, search, fleet row) expands the sheet to show its detail
   store.subscribe((s, _prev, changed) => {
     if (!changed.includes('selection')) return
     const sel = s.selection
-    if (!sel || sel.type === 'site') return
-    if (sheet.getAttribute('data-mp') !== 'detail') setPanel('detail')
+    if (!sel) return
+    if (sel.type !== 'site' && sheet.getAttribute('data-mp') !== 'detail') setPanel('detail')
     else sheet.classList.remove('is-collapsed')
   })
 

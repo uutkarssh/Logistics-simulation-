@@ -10,7 +10,7 @@ const FOV = 28
 const POLAR_RANGE = [0.35, 1.25]
 const DISTANCE_RANGE = [18, 1400]
 const MAX_DT = 0.1
-const DEFAULT_VIEW = { target: { x: 0, y: 0, z: 0 }, distance: 190, azimuth: Math.PI / 4, polar: 0.87 }
+const DEFAULT_VIEW = { target: { x: 0, y: 0, z: 0 }, distance: 160, azimuth: Math.PI / 4, polar: 0.87 }
 
 // Light rig tuned against docs/ref frames (01, 15, 21, 23): cool sky + white key + a faint room
 // environment give the airy pastel "clay" look (cyan-leaning lit blues, cool white ground).

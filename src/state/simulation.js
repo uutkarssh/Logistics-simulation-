@@ -32,6 +32,7 @@
 import * as THREE from 'three'
 import { db } from '../data/db.js'
 import { store, bus } from './store.js'
+import { DRIVER_POOL, randomRoute } from './pools.js'
 import { fmtTime } from '../data/format.js'
 import {
   SITE_IDS, VEHICLE_SCALE, FORKLIFT_SCALE, PALLET_SCALE, CHARGER_SCALE,
@@ -538,8 +539,8 @@ function planPath(G, a, b, lifted) {
 }
 
 // ───────────────────────────── the simulation ─────────────────────────────
-export function createSimulation(world) {
-  const rng = lcg(0x5eed1e)
+export function createSimulation(world, seed) {
+  const rng = lcg((seed ?? 0x5eed1e) >>> 0)
   const R = (a, b) => a + (b - a) * rng()
   let clock = Number(store.state.simMinutes)
   if (!Number.isFinite(clock)) clock = 580
@@ -1226,6 +1227,18 @@ export function createSimulation(world) {
     t.status = 'en_route'
     ts.lastProgress = clock
     resetShipment(ts)
+    // randomize this new cycle: a different driver + a fresh shipment customer/destination
+    // (regional pool, correct origin→destination logic) so repeated truck cycles aren't identical
+    t.driver = DRIVER_POOL[Math.floor(rng() * DRIVER_POOL.length)]
+    const shp = db.shipment(t.shipmentId)
+    if (shp) {
+      const r = randomRoute(t.siteId, rng)
+      if (r) {
+        shp.customer = r[0]
+        if (shp.direction === 'outbound') shp.toLabel = r[1]
+        else shp.toLabel = db.site(shp.siteId)?.name ?? shp.toLabel
+      }
+    }
     poseFromState(ts)
   }
 

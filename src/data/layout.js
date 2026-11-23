@@ -286,7 +286,7 @@ const DEFS = {
     // charging spot in the open yard west of the annex, the forklifts nose-in to the cabinets (02)
     chargerRow: [pt(-24.5, -6.2), CZ, -HALF_PI],
     parking: [pose(-43, 28, 0), pose(-37.5, 28, 0)],
-    view: { target: { x: 4, y: 0, z: -16 }, distance: 87 },
+    view: { target: { x: 4, y: 0, z: -16 }, distance: 76 },
     decor: [
       { type: 'container', x: -30, z: 7, heading: 0, label: 'MAERA LINE' },
       { type: 'pallets', x: -16, z: 3.4, heading: 0, kind: 'cardboard', cols: 3, rows: 2, gap: 3.6, layers: 2 },
@@ -333,7 +333,7 @@ const DEFS = {
     // charging bay past the north-east corner (frame 15, top right)
     chargerRow: [pt(324.5, -90.5), pt(CHARGER_STEP, 0), PI],
     parking: [pose(352, -70, PI), pose(357.5, -70, PI)],
-    view: { target: { x: 341, y: 0, z: -41 }, distance: 116, azimuth: 0.85 },
+    view: { target: { x: 341, y: 0, z: -41 }, distance: 102, azimuth: 0.85 },
     decor: [
       { type: 'pallets', x: 334, z: -67.5, heading: HALF_PI, kind: 'cardboard', cols: 1, rows: 1, gap: 2.8, layers: 2 },
       { type: 'pallets', x: 334.5, z: -71.2, heading: HALF_PI, kind: 'blue', cols: 1, rows: 1, gap: 2.7, layers: 2 },
@@ -366,7 +366,7 @@ const DEFS = {
     approach: (d, g) => [g, pt(g.x - 3, g.z - 10), pt(g.x - 3, d.z + LANE_OUT), pt(d.x, d.z + LANE_OUT), pt(d.x, d.z + PULL_OUT)],
     exit: (d, g) => [d, pt(d.x, d.z + EXIT_OUT), pt(g.x + 3, d.z + EXIT_OUT), pt(g.x + 3, g.z - 10), g],
     // slots + chargers live on the platform / apron (see applyColdPlatform())
-    view: { target: { x: 618, y: 0, z: 55 }, distance: 135 },
+    view: { target: { x: 618, y: 0, z: 55 }, distance: 118 },
     decor: [
       { type: 'silo', x: 553, z: 2, radius: 2.8, height: 11 },
       { type: 'silo', x: 553, z: 9, radius: 2.8, height: 11 },
@@ -416,7 +416,7 @@ const DEFS = {
     // charging bay north-west of the In 1 truck, cabinets on the west side (frames 07, 10, 29)
     chargerRow: [pt(83.5, 329.5), CZ, -HALF_PI],
     parking: [pose(52, 360, 0), pose(57.5, 360, 0), pose(63, 360, 0)],
-    view: { target: { x: 139, y: 0, z: 322 }, distance: 105, azimuth: 0.85, polar: 1.15 },
+    view: { target: { x: 139, y: 0, z: 322 }, distance: 92, azimuth: 0.85, polar: 1.15 },
     decor: [
       { type: 'pallets', x: 135, z: 347.5, heading: 0.05, kind: 'white', cols: 1, rows: 1, gap: 3.1, layers: 1 },
       { type: 'pallets', x: 135.5, z: 351.6, heading: -0.1, kind: 'cardboard', cols: 1, rows: 1, gap: 2.6, layers: 2 },
@@ -451,7 +451,7 @@ const DEFS = {
     // charging bay at the north end of the yard (frame 23, top right)
     chargerRow: [pt(508, 270), CZ, HALF_PI],
     parking: [pose(523, 279, PI), pose(528.5, 279, PI)],
-    view: { target: { x: 506, y: 0, z: 309 }, distance: 125, azimuth: 0.8 },
+    view: { target: { x: 506, y: 0, z: 309 }, distance: 110, azimuth: 0.8 },
     decor: [
       { type: 'pallets', x: 503.2, z: 287, heading: HALF_PI, kind: 'blue', cols: 2, rows: 1, gap: 3.6, layers: 2 },
       { type: 'pallets', x: 488, z: 372, heading: 0, kind: 'cardboard', cols: 2, rows: 1, gap: 2.8, layers: 2 },

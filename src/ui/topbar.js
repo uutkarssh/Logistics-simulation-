@@ -162,6 +162,7 @@ function template() {
           ${avatar(32)}
           <div><b>${esc(db.user.name)}</b><span class="tb-usermenu__role">${esc(db.user.role)}</span><span class="tb-usermenu__email">${esc(db.user.email)}</span></div>
         </div>
+        <button class="tb-usermenu__item" type="button" role="menuitem" data-act="new-scenario">${icon('rotateLeft', 16)}New scenario</button>
         <button class="tb-usermenu__item" type="button" role="menuitem">${icon('user', 16)}Profile</button>
         <button class="tb-usermenu__item" type="button" role="menuitem">${icon('settings', 16)}Settings</button>
         <button class="tb-usermenu__item tb-usermenu__item--danger" type="button" role="menuitem">${icon('logout', 16)}Sign out</button>
@@ -470,6 +471,12 @@ function createUserMenu(root) {
   const btn = root.querySelector('.tb-user__btn')
   const pop = root.querySelector('.tb-usermenu')
   btn.addEventListener('click', () => store.set({ menu: store.state.menu === 'user' ? null : 'user' }))
+  pop.addEventListener('click', (e) => {
+    if (e.target.closest('[data-act="new-scenario"]')) {
+      store.set({ menu: null })
+      window.dispatchEvent(new CustomEvent('wt:new-scenario'))
+    }
+  })
   // Profile / Settings / Sign out are inert in this demo — they just close the menu.
   pop.addEventListener('click', (e) => {
     if (e.target.closest('.tb-usermenu__item')) store.set({ menu: null })
