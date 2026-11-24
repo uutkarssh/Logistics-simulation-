@@ -1227,18 +1227,9 @@ export function createSimulation(world, seed) {
     t.status = 'en_route'
     ts.lastProgress = clock
     resetShipment(ts)
-    // randomize this new cycle: a different driver + a fresh shipment customer/destination
-    // (regional pool, correct origin→destination logic) so repeated truck cycles aren't identical
-    t.driver = DRIVER_POOL[Math.floor(rng() * DRIVER_POOL.length)]
-    const shp = db.shipment(t.shipmentId)
-    if (shp) {
-      const r = randomRoute(t.siteId, rng)
-      if (r) {
-        shp.customer = r[0]
-        if (shp.direction === 'outbound') shp.toLabel = r[1]
-        else shp.toLabel = db.site(shp.siteId)?.name ?? shp.toLabel
-      }
-    }
+    // NOTE: the truck keeps its driver + shipment customer/destination for the whole journey —
+    // they do NOT change on respawn (so tracking a truck to its destination stays consistent).
+    // Only the cargo totals / timings reset (resetShipment + progress above).
     poseFromState(ts)
   }
 

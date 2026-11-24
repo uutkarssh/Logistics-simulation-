@@ -14,6 +14,7 @@ import { createTruck } from './models/truck.js'
 import { createForklift } from './models/forklift.js'
 import { createPallet } from './models/pallet.js'
 import { createCharger, createMapPin, createGlowDisc } from './models/props.js'
+import { createIndiaMap } from './indiaMap.js'
 
 // Flat pick slab over the bay: trucks / forklifts standing in the bay still win the raycast.
 const DOCK_VOLUME = { width: BAY.w, height: 0.8 }
@@ -57,6 +58,8 @@ export function createWorld(app) {
   const layouts = allLayouts()
   const env = createEnvironment(layouts)
   root.add(env.root)
+  // infinite procedural India map (real place names + white buildings) wrapping the city
+  const india = createIndiaMap(root, app)
   applyInitialPoses(db)
 
   // ── entities ────────────────────────────────────────────────────────────────────────────────
@@ -232,6 +235,7 @@ export function createWorld(app) {
     }
 
     env.update(dt, elapsed)
+    india.update()
   }
 
   // ── queries ─────────────────────────────────────────────────────────────────────────────────
